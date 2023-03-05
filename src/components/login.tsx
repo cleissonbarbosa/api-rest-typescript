@@ -35,7 +35,8 @@ const Wrapper = styled(Box)`
 
 const StyledLogo = styled.img`
   max-width: 200px;
-  margin: ${themeGet('space', 'md')} 0;
+  margin: ${themeGet('space', 'md')} auto;
+  display: block;
 `
 
 export type LoginProps = {

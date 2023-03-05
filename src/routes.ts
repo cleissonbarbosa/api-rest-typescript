@@ -5,6 +5,7 @@ import { UserController } from './controllers/UserController'
 
 const routes = Router()
 
+routes.get('/', (req, res) => res.redirect( '/admin' ) )
 routes.post('/user', new UserController().create)
 routes.post('/subject', new SubjectController().create)
 routes.post('/room', new RoomController().create)

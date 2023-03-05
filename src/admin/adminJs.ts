@@ -4,6 +4,7 @@ import { Subject, Room, User, Video } from "../entities";
 import AdminJS from 'adminjs'
 import { Database, Resource } from '@adminjs/typeorm' // or any other adapter
 import Login from "../components/login";
+import importExportFeature from "@adminjs/import-export";
 
 const getAdminJs = () => {
     AdminJS.registerAdapter({ Database, Resource })
@@ -30,7 +31,12 @@ const getAdminJs = () => {
                 ]
             }, 
             Room,
-            Video,
+            {
+                resource: Video,
+                features: [
+                    importExportFeature()
+                ]
+            },
             Subject,
         ],
         branding: {
@@ -41,12 +47,21 @@ const getAdminJs = () => {
         locale: {
             language: 'pt-BR',
             translations: {
-              labels: {
-                // here we translate the name of a resource.
-                Room: 'Sala de aula',
-                Subject: "Materia",
-                User: "Usuários"
-              },
+                messages: {
+                    forgotPasswordQuestion: "Esqueceu a senha?",
+                    forgotPassword: "clique aqui",
+                    loginWelcome: "Painel admin para gerenciar recursos de uma API Rest"
+                },
+                labels: {
+                    // here we translate the name of a resource.
+                    Room: 'Sala de aula',
+                    Subject: "Materia",
+                    User: "Usuários",
+                },
+                properties: {
+                    email: "E-mail",
+                    password: "Senha"
+                }
             }
         }
     })

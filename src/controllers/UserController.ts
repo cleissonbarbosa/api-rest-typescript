@@ -2,25 +2,21 @@ import { Request, Response } from 'express'
 import { userRepository } from '../repositories/userRepository'
 import argon2 from 'argon2'
 import { User } from '../entities/User'
+import ApiError, { errors } from '../exceptions/ApiError'
 
 export class UserController {
 	async create(req: Request, res: Response) {
 		const { email, password, role } : User = req.body
 
 		if (!email || !password || !role) {
-			return res.status(400).json({ message: 'bad request' })
+			throw new ApiError( "Bad request", errors.BadRequest )
 		}
 
-		try {
-			const passwordEncrypted = await argon2.hash(password)
-			const newUSer = userRepository.create({ email, password: passwordEncrypted, role })
+		const passwordEncrypted = await argon2.hash(password)
+		const newUSer = userRepository.create({ email, password: passwordEncrypted, role })
 
-			await userRepository.save(newUSer)
+		await userRepository.save(newUSer)
 
-			return res.status(201).json(newUSer)
-		} catch (error) {
-			console.log(error)
-			return res.status(500).json({ message: 'Internal Server Error' })
-		}
+		return res.status(201).json(newUSer)
 	}
 }
