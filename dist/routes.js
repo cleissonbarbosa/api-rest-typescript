@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const RoomController_1 = require("./controllers/RoomController");
+const SubjectController_1 = require("./controllers/SubjectController");
+const routes = (0, express_1.Router)();
+routes.post('/subject', new SubjectController_1.SubjectController().create);
+routes.post('/room', new RoomController_1.RoomController().create);
+routes.get('/room', new RoomController_1.RoomController().list);
+routes.post('/room/:idRoom/create', new RoomController_1.RoomController().createVideo);
+routes.post('/room/:idRoom/subject', new RoomController_1.RoomController().roomSubject);
+exports.default = routes;

@@ -1,4 +1,5 @@
 import {
+	BaseEntity,
 	Column,
 	Entity,
 	ManyToMany,
@@ -9,7 +10,7 @@ import { Subject } from './Subject'
 import { Video } from './Video'
 
 @Entity('rooms')
-export class Room {
+export class Room extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number
 

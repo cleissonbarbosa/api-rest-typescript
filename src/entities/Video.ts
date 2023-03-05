@@ -1,4 +1,5 @@
 import {
+	BaseEntity,
 	Column,
 	Entity,
 	JoinColumn,
@@ -8,7 +9,7 @@ import {
 import { Room } from './Room'
 
 @Entity('videos')
-export class Video {
+export class Video extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number
 
