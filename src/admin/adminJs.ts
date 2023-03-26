@@ -10,7 +10,7 @@ const getAdminJs = () => {
     AdminJS.registerAdapter({ Database, Resource })
 
     const adminJs = new AdminJS({
-        resources: [ 
+        resources: [
             {
                 resource: User,
                 options: {
@@ -34,18 +34,36 @@ const getAdminJs = () => {
                 })
                 ]
             }, 
-            Room,
+            {
+                resource: Room,
+                options: {
+                    navigation: {
+                        name: 'E-learning',
+                        icon: 'Books'
+                    },
+                },
+            },
             {
                 resource: Video,
-                navigation: {
-                    name: 'Videos',
-                    icon: 'Video'
+                options: {
+                    navigation: {
+                        name: 'E-learning',
+                        icon: 'Books'
+                    },
                 },
                 features: [
                     importExportFeature()
                 ]
             },
-            Subject,
+            {
+                resource: Subject,
+                options: {
+                    navigation: {
+                        name: 'E-learning',
+                        icon: 'Books'
+                    },
+                },
+            },
         ],
         branding: {
             companyName: 'Cleisson B.',
