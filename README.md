@@ -8,7 +8,9 @@
 
 [🌐 View Demo](https://api-rest-node-tys2.onrender.com/)
 
-<img src="public/images/logo.png" alt="logo">
+<div align="center">
+  <img width="400" src="public/images/logo.png" alt="logo">
+</div>
 
 > This is an example project, it can be used as a boilerplate to create a rest api with best practices and some functionality ready
 
