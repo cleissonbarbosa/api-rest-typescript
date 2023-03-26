@@ -49,6 +49,10 @@ run the following command:
 ```sh
 yarn docker:run && yarn dev
 ```
+or:
+```sh
+npm run docker:run && npm run dev
+```
 this will upload a container in docker with postgresql, redis, zookeeper and kafka
 
 ## 📫 Contributing to the project
