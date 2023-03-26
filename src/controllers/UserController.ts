@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { userRepository } from '../repositories/userRepository'
-import argon2 from 'argon2'
+import * as argon2 from 'argon2';
 import { User } from '../entities/User'
 import ApiError, { errors } from '../exceptions/ApiError'
 

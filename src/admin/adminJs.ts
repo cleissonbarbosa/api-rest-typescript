@@ -1,5 +1,5 @@
 import passwordsFeature from "@adminjs/passwords";
-import argon2 from "argon2";
+import * as argon2 from "argon2";
 import { Subject, Room, User, Video } from "../entities";
 import AdminJS from 'adminjs'
 import { Database, Resource } from '@adminjs/typeorm' // or any other adapter
@@ -14,6 +14,10 @@ const getAdminJs = () => {
             {
                 resource: User,
                 options: {
+                    navigation: {
+                        name: 'Users',
+                        icon: 'User'
+                    },
                     properties: {
                         password: {
                             isVisible: false,
@@ -33,6 +37,10 @@ const getAdminJs = () => {
             Room,
             {
                 resource: Video,
+                navigation: {
+                    name: 'Videos',
+                    icon: 'Video'
+                },
                 features: [
                     importExportFeature()
                 ]

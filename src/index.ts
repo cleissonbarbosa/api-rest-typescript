@@ -8,7 +8,6 @@ import { error } from './middlewares/error';
 
 
 AppDataSource.initialize().then(() => {
-	
 	const app = express()
 	const adminJs = getAdminJs()
 	const adminRouter = getAdminRouter( adminJs );

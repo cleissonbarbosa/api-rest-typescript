@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "nodemon --exec ts-node ./src/index.ts",
+		"docker:run": "docker-compose up -d",
 		"migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/migrations/default",
 		"migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run",
 		"build": "rm -rf ./dist && tsc",
@@ -30,6 +31,7 @@
 		"express-async-errors": "^3.1.1",
 		"express-formidable": "^1.2.0",
 		"express-session": "^1.17.3",
+		"openai": "^3.2.1",
 		"pg": "^8.7.3",
 		"react": "^18.2.0",
 		"react-redux": "^8.0.5",
