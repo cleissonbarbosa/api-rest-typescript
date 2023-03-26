@@ -27,7 +27,7 @@ The project is still under development and the next updates will focus on the fo
 
 Before you begin, make sure you've met the following requirements:
 
-* You have installed the latest version of `<Typescript / NodeJS 18 / Docker>` Indique qual sistema operacional é compatível / não compatível.
+* You have installed the latest version of `<Typescript / NodeJS 18 / Docker>`.
 
 ## 💾 installation
 
