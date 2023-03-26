@@ -88,4 +88,4 @@ Thanks to the following people who contributed to this project:
 
 This project is under license. See the [LICENSE](LICENSE.md) file for more details.
 
-[⬆ Voltar ao topo](#API-Rest-with-Typescript-(example))<br>
+[⬆ Voltar ao topo](#%EF%B8%8F-api-rest-with-typescript-example)<br>
