@@ -81,7 +81,7 @@ export const Login: React.FC<{}> = (props) => {
           </Box>
           <Box as="form" action={action} method="POST" p="x3" flexGrow={1} width={['100%', '100%', '480px']}>
             <H5 marginBottom="xxl">
-              {branding.logo ? <StyledLogo src={branding.logo} alt={branding.companyName} /> : branding.companyName}
+              {branding.logo ? <StyledLogo width="66" src={branding.logo} alt={branding.companyName} /> : branding.companyName}
             </H5>
             {message && (
               <MessageBox
@@ -114,7 +114,7 @@ export const Login: React.FC<{}> = (props) => {
         </Box>
         {branding.withMadeWithLove ? (
           <Box mt="xxl">
-            <Text texAlign="center">by Cleisson B. 💙</Text>
+            <Text texAlign="center">by {branding.companyName} 💚</Text>
           </Box>
         ) : null}
       </Wrapper>

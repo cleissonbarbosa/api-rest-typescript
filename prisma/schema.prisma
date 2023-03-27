@@ -7,17 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model migrations {
-//   id        Int    @id(map: "PK_8c82d7f526340ab734260ea46be") @default(autoincrement())
-//   timestamp BigInt
-//   name      String @db.VarChar
-// }
-
 model RoomSubject {
   room_id    Int
   subject_id Int
   rooms      Rooms    @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   subjects   Subjects @relation(fields: [room_id], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @db.Timestamptz(3)
 
   @@id([room_id, subject_id])
   @@index([subject_id])
@@ -26,26 +22,35 @@ model RoomSubject {
 }
 
 model Rooms {
-  id           Int            @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   name         String
   description  String?
   room_subject RoomSubject[]
   videos       Videos[]
+  createdAt    DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(3)
+
   @@map("rooms")
 }
 
 model Subjects {
-  id           Int            @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   name         String
   room_subject RoomSubject[]
+  createdAt    DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(3)
+
   @@map("subjects")
 }
 
 model Users {
-  id       Int          @id @default(autoincrement())
-  email    String          @unique @db.VarChar
-  password String          @db.VarChar
-  role     UsersRoleEnum @default(subscribe)
+  id        Int           @id @default(autoincrement())
+  email     String        @unique @db.VarChar
+  password  String        @db.VarChar
+  role      UsersRoleEnum @default(subscribe)
+  createdAt DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime      @updatedAt @db.Timestamptz(3)
+
   @@map("users")
 }
 
@@ -56,12 +61,13 @@ enum UsersRoleEnum {
 }
 
 model Videos {
-  id      Int    @id @default(autoincrement())
-  title   String
-  url     String
-  room_id Int?
-  rooms  Rooms? @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id        Int      @id @default(autoincrement())
+  title     String
+  url       String
+  room_id   Int?
+  rooms     Rooms?   @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
   @@map("videos")
 }
-
-

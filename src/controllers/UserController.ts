@@ -17,7 +17,7 @@ export class UserController {
 			data: {
 				email,
 				password: passwordEncrypted,
-				role
+				role,
 			}
 		})
 		return res.status(201).json(newUSer)
