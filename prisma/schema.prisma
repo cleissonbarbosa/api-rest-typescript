@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model migrations {
+//   id        Int    @id(map: "PK_8c82d7f526340ab734260ea46be") @default(autoincrement())
+//   timestamp BigInt
+//   name      String @db.VarChar
+// }
+
+model RoomSubject {
+  room_id    Int
+  subject_id Int
+  rooms      Rooms    @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  subjects   Subjects @relation(fields: [room_id], references: [id], onDelete: Cascade)
+
+  @@id([room_id, subject_id])
+  @@index([subject_id])
+  @@index([room_id])
+  @@map("room_subject")
+}
+
+model Rooms {
+  id           Int            @id @default(autoincrement())
+  name         String
+  description  String?
+  room_subject RoomSubject[]
+  videos       Videos[]
+  @@map("rooms")
+}
+
+model Subjects {
+  id           Int            @id @default(autoincrement())
+  name         String
+  room_subject RoomSubject[]
+  @@map("subjects")
+}
+
+model Users {
+  id       Int          @id @default(autoincrement())
+  email    String          @unique @db.VarChar
+  password String          @db.VarChar
+  role     UsersRoleEnum @default(subscribe)
+  @@map("users")
+}
+
+enum UsersRoleEnum {
+  administrator
+  editor
+  subscribe
+}
+
+model Videos {
+  id      Int    @id @default(autoincrement())
+  title   String
+  url     String
+  room_id Int?
+  rooms  Rooms? @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@map("videos")
+}
+
+

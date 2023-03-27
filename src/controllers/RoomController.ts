@@ -1,14 +1,13 @@
 import { Request, Response } from 'express'
 import ApiError, { errors } from '../exceptions/ApiError'
-import { roomRepository } from '../repositories/roomRepository'
-import { subjectRepository } from '../repositories/subjectRepository'
-import { videoRepository } from '../repositories/videoRepository'
+import { prisma } from '../prisma'
 
 export class RoomController {
 	async create(req: Request, res: Response) {
 		const { name, description } = req.body
-		const newRoom = roomRepository.create({ name, description })
-		await roomRepository.save(newRoom)
+		const newRoom = prisma.rooms.create({ 
+			data: { name, description }
+		})
 
 		return res.status(201).json(newRoom)
 	}
@@ -16,19 +15,22 @@ export class RoomController {
 	async createVideo(req: Request, res: Response) {
 		const { title, url } = req.body
 		const { idRoom } = req.params
-		const room = await roomRepository.findOneBy({ id: Number(idRoom) })
+
+		const room = await prisma.rooms.findUniqueOrThrow({ 
+			where:{ id: Number(idRoom) }
+		})
 
 		if ( ! room ) {
 			throw new ApiError("Aula não existe", errors.NotFound)
 		}
 
-		const newVideo = videoRepository.create({
-			title,
-			url,
-			room,
+		const newVideo = prisma.videos.create({
+			data: {
+				title,
+				url,
+				room_id: Number(idRoom)
+			}
 		})
-
-		await videoRepository.save(newVideo)
 
 		return res.status(201).json(newVideo)
 
@@ -37,34 +39,40 @@ export class RoomController {
 	async roomSubject(req: Request, res: Response) {
 		const { subject_id } = req.body
 		const { idRoom } = req.params
-		const room = await roomRepository.findOneBy({ id: Number(idRoom) })
+		const room = await prisma.rooms.findUniqueOrThrow({ 
+			where: { 
+				id: Number(idRoom)
+			}
+		})
 
 		if ( ! room ) {
 			throw new ApiError("Aula não existe", errors.NotFound)
 		}
 
-		const subject = await subjectRepository.findOneBy({
-			id: Number(subject_id),
+		const subject = await prisma.subjects.findUniqueOrThrow({
+			where:{
+				id: Number( subject_id ),
+			}
 		})
 
 		if ( !subject ) {
 			throw new ApiError("Disciplina não existe", errors.NotFound)
 		}
 
-		const roomUpdate = {
-			...room,
-			subjects: [subject],
-		}
+		const data = prisma.roomSubject.create({
+			data: {
+				room_id: Number(idRoom),
+				subject_id: Number( subject_id )
+			}
+		})
 
-		await roomRepository.save( roomUpdate )
-
-		return res.status(204).send()
+		return res.status(204).json(data)
 	}
 
 	async list(req: Request, res: Response) {
-		const rooms = await roomRepository.find({
-			relations: {
-				subjects: true,
+		const rooms = await prisma.rooms.findMany({
+			include: {
+				room_subject:true,
 				videos: true,
 			},
 		})

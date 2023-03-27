@@ -1,18 +1,19 @@
 import passwordsFeature from "@adminjs/passwords";
 import * as argon2 from "argon2";
-import { Subject, Room, User, Video } from "../entities";
 import AdminJS from 'adminjs'
-import { Database, Resource } from '@adminjs/typeorm' // or any other adapter
+import { Database, Resource } from '@adminjs/prisma' // or any other adapter
 import Login from "../components/login";
 import importExportFeature from "@adminjs/import-export";
-
+import { prisma } from "../prisma";
+import { DMMFClass } from '@prisma/client/runtime'
 const getAdminJs = () => {
     AdminJS.registerAdapter({ Database, Resource })
 
+    const dmmf = ((prisma as any)._baseDmmf as DMMFClass)
     const adminJs = new AdminJS({
         resources: [
             {
-                resource: User,
+                resource: { model: dmmf.modelMap.Users, client: prisma },
                 options: {
                     navigation: {
                         name: 'Users',
@@ -35,7 +36,7 @@ const getAdminJs = () => {
                 ]
             }, 
             {
-                resource: Room,
+                resource: { model: dmmf.modelMap.Rooms, client: prisma },
                 options: {
                     navigation: {
                         name: 'E-learning',
@@ -44,7 +45,7 @@ const getAdminJs = () => {
                 },
             },
             {
-                resource: Video,
+                resource: { model: dmmf.modelMap.Videos, client: prisma },
                 options: {
                     navigation: {
                         name: 'E-learning',
@@ -56,7 +57,7 @@ const getAdminJs = () => {
                 ]
             },
             {
-                resource: Subject,
+                resource: { model: dmmf.modelMap.Subjects, client: prisma },
                 options: {
                     navigation: {
                         name: 'E-learning',

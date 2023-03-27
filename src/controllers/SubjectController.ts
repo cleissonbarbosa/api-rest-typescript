@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import ApiError, { errors } from '../exceptions/ApiError'
-import { subjectRepository } from '../repositories/subjectRepository'
+import { prisma } from '../prisma'
 
 export class SubjectController {
 	async create(req: Request, res: Response) {
@@ -10,9 +10,11 @@ export class SubjectController {
 			throw new ApiError( "O nome é obrigatório", errors.BadRequest )
 		}
 
-		const newSubject = subjectRepository.create({ name })
-
-		await subjectRepository.save(newSubject)
+		const newSubject = prisma.subjects.create({
+			data: {
+				name
+			}
+		})
 
 		return res.status(201).json(newSubject)
 	}
