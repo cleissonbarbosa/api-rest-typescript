@@ -42,6 +42,10 @@ const getAdminJs = () => {
                     forgotPasswordQuestion: "Esqueceu a senha?",
                     forgotPassword: "clique aqui",
                     loginWelcome: "Painel admin para gerenciar recursos de uma API Rest",
+                    users_title: "Usuários",
+                    users_subtitle: "Veja a lista de usuários cadastrados, edite ou remova.",
+                    Github_title: "Api Rest Node.js Repo",
+                    Github_subtitle: "Rest API with NodeJS + Typescript + Prisma + OpenAi integration"
                 },
                 labels: {
                     // here we translate the name of a resource.

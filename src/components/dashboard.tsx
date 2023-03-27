@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {
   Box,
   H2,
   Text,
   Illustration,
+  IllustrationProps,
+  H5
 } from '@adminjs/design-system'
-import { useTranslation } from 'adminjs'
+import { ApiClient, useTranslation } from 'adminjs'
+import { UserRegisterByMonthChart } from './dashboard/charts/userRegisterByMonth'
+import { Users } from '@prisma/client'
 
 const pageHeaderHeight = 284
 const pageHeaderPaddingY = 74
@@ -42,11 +46,39 @@ export const DashboardHeader: React.FC = () => {
       >
         <Text textAlign="center" color="white">
           <H2>{translateMessage('welcomeOnBoard_title')}</H2>
+          <Text opacity={0.8}>
+            {translateMessage('welcomeOnBoard_subtitle')}
+          </Text>
         </Text>
+        
       </Box>
     </Box>
   )
 }
+
+type BoxType = {
+  variant: string;
+  title: string;
+  subtitle: string;
+  href: string;
+}
+
+const boxes = ({ translateMessage }): Array<BoxType> => [{
+  variant: 'Astronaut',
+  title: translateMessage('users_title'),
+  subtitle: translateMessage('users_subtitle'),
+  href: '/admin/resources/Users',
+}, {
+  variant: 'GithubLogo',
+  title: translateMessage('Github_title'),
+  subtitle: translateMessage('Github_subtitle'),
+  href: 'https://github.com/cleissonbarbosa/api-rest-typescript',
+}, {
+  variant: 'DocumentSearch',
+  title: translateMessage('customizeActions_title'),
+  subtitle: translateMessage('customizeActions_subtitle'),
+  href: 'https://adminjs.co/tutorial-actions.html',
+}]
 
 const Card = styled(Box)`
   display: ${({ flex }): string => (flex ? 'flex' : 'block')};
@@ -62,6 +94,24 @@ const Card = styled(Box)`
 Card.defaultProps = {
   variant: 'white',
   boxShadow: 'card',
+}
+
+const Chart: React.FC = () => {
+  const [data, setData] = useState<Users[] | null>(null)
+  const api = new ApiClient()
+
+  useEffect(() => {
+    api.getDashboard()
+      .then((response) => {
+        setData(response.data)
+      })
+      .catch((error) => {
+        // Handle errors here
+      })
+  }, [])
+  return (
+    <UserRegisterByMonthChart data={data} />
+  )
 }
 
 export const Dashboard: React.FC = () => {
@@ -80,6 +130,27 @@ export const Dashboard: React.FC = () => {
         flexWrap="wrap"
         width={[1, 1, 1, 1024]}
       >
+        <Box width={[1, 1, 1 / 2]} p="lg">
+          <Card as="a" flex>
+            <Chart />
+          </Card>
+        </Box>
+        {boxes({ translateMessage }).map((box, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Box key={index} width={[1, 1, 1 / 2]} p="lg">
+              <Card as="a" href={box.href} target="_blank">
+                <Text textAlign="center">
+                  <Illustration
+                    variant={box.variant as IllustrationProps['variant']}
+                    width={100}
+                    height={70}
+                  />
+                  <H5 mt="lg">{box.title}</H5>
+                  <Text>{box.subtitle}</Text>
+                </Text>
+              </Card>
+            </Box>
+          ))}
       </Box>
     </Box>
   )
