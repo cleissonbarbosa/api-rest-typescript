@@ -1,5 +1,7 @@
 import { RoomController } from '../../controllers/RoomController';
-import { router } from '../make-routes';
+import { Router } from 'express';
+
+const router = Router();
 
 router.post('/room', new RoomController().create)
 router.get('/room', new RoomController().list)

@@ -1,6 +1,7 @@
 import { SubjectController } from "../../controllers/SubjectController";
-import { router } from '../make-routes';
+import { Router } from 'express';
 
+const router = Router();
 router.post('/subject', new SubjectController().create)
 
 export default router

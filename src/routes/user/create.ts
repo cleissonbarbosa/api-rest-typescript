@@ -1,6 +1,8 @@
 
 import { UserController } from '../../controllers/UserController';
-import { router } from '../make-routes';
+import { Router } from 'express';
 
+const router = Router();
 const basePath = '/user';
+
 export default router.post(`${basePath}/create`, new UserController().create)
