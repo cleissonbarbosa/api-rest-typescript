@@ -10,7 +10,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { Users } from '@prisma/client';
 
 ChartJS.register(
   CategoryScale,
@@ -69,10 +68,8 @@ export function UserRegisterByMonthChart( chatData ) {
 function countUserPerMonthRegistred(users, month: number): number {
     const count = users.filter( (user) => {
         const date = new Date( user.createdAt )
-        console.log("Data: ", date, date.getMonth(), month)
         return date.getMonth() === month
     })
-    console.log(count, users, month)
 
     return count.length
 }
