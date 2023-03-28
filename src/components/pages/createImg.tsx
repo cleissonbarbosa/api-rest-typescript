@@ -34,7 +34,7 @@ const CustomPage: React.FC = () => {
     <Box p="xxl">
       <Text variant="title">Create Image</Text>
       <FormGroup mt="xxl">
-        <Label>Prompt</Label>
+        <Label required>Prompt</Label>
         <Input onChange={(event) => setPrompt(event.target.value)} />
       </FormGroup>
       <FormGroup mt="xl">
@@ -53,10 +53,15 @@ const CustomPage: React.FC = () => {
       <Button mt="xl" onClick={handleClick}>
         {isLoading ? 'Loading...' : 'Create Image'}
       </Button>
-      {result && !isLoading && (
+      {result && !result.toLowerCase().includes('error') && !isLoading && (
         <Box p="xxl">
           <Text variant="title">Generated Image</Text>
           <img src={result} alt="Generated Image" />
+        </Box>
+      )}
+      {result && result.toLowerCase().includes('error') && !isLoading && (
+        <Box p="xxl">
+          <Text variant="title">{result}</Text>
         </Box>
       )}
     </Box>

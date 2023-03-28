@@ -71,7 +71,7 @@ const getAdminJs = () => {
 
     adminJs.overrideLogin({ component: Login })
     adminJs.watch()
-
+    adminJs.initialize()
     return adminJs;
 }
 export default getAdminJs;

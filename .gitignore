@@ -4,4 +4,4 @@ node_modules
 dist
 *.lock
 *.log
-.adminjs
+.adminjs/bundle.js
