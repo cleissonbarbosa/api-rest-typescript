@@ -13,15 +13,15 @@ export class IAController {
 		const { prompt, size } : AIrequestImageCreate = req.body
 
 		if (!prompt) {
-			throw new ApiError( "Bad request", errors.BadRequest )
+			throw new ApiError( "Bad request - prompt empty", errors.BadRequest )
 		}
 
 		if (size && !/^\d{3,4}x\d{3,4}$/.test(size) ) {
-			throw new ApiError( "Bad request", errors.BadRequest )
+			throw new ApiError( "Bad request - size incorrect format", errors.BadRequest )
 		}
 
 		const response = await OpenAi.createImage( prompt, size )
 	
-		return res.status(201).json({result: response})	
+		return res.status(201).json({result: response})
 	}
 }

@@ -14,6 +14,12 @@ const getAdminJs = () => {
             component: Components.Dashboard,
             handler: dashboardHandler
         },
+        pages: {
+            "create Images": {
+                icon: "Users",
+                component: Components.CreateImages,
+            }
+        },
         branding: {
             companyName: 'Cleisson B.',
             logo: '/images/logo.png',
@@ -52,11 +58,13 @@ const getAdminJs = () => {
                     Room: 'Sala de aula',
                     Subject: "Materia",
                     User: "Usuários",
+                    createImages: "etste"
                 },
                 properties: {
                     email: "E-mail",
-                    password: "Senha"
-                }
+                    password: "Senha",
+                    createImages: "etste"
+                },
             }
         }
     })
