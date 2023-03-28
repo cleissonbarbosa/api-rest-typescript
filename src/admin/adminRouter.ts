@@ -1,5 +1,5 @@
 import AdminJSExpress from '@adminjs/express'
-import { authenticate } from './auth'
+import { authenticateAdmin as authenticate } from './auth'
 
 const getAdminRouter = ( adminJs ) => {
     const ADMIN_SECRET = process.env.ADMIN_SECRET || 's3cr3t4dmlnp4$$'

@@ -1,5 +1,7 @@
-import userCreateRouter from './create';
+import userCreateRouter from './create'
+import userLogin from './login'
 
 export default {
-    userCreateRouter
+    userCreateRouter,
+    userLogin
 }

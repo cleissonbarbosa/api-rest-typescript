@@ -7,7 +7,7 @@ export const error = (
     res: Response, 
     next: NextFunction
 ) => {
-    if(req.headers["content-type"] === "application/json"){
+    if(req.method.toLocaleLowerCase() === 'post' ){
         return res
             .status( error.statusCode ?? 500 )
             .json({

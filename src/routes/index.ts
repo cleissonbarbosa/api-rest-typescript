@@ -5,6 +5,7 @@ import userRoutes from './user';
 
 const routes = makeRoutes(
     userRoutes.userCreateRouter,
+    userRoutes.userLogin,
     OpenAi.createImage,
     school.room,
     school.subject
