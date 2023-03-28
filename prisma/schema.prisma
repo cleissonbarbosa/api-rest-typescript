@@ -45,7 +45,7 @@ model Subjects {
 
 model Users {
   id        Int           @id @default(autoincrement())
-  email     String        @unique @db.VarChar
+  email     String        @unique
   password  String        @db.VarChar
   role      UsersRoleEnum @default(subscribe)
   createdAt DateTime      @default(now()) @db.Timestamptz(3)
