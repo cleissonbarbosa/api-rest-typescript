@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, FormGroup, Label, Input, Text, Select } from '@adminjs/design-system';
 import axios from 'axios';
-import Modal from 'react-modal'
 
 const CustomPage: React.FC = () => {
   const [prompt, setPrompt] = useState<string>('');
