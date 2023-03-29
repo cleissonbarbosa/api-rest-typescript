@@ -2,7 +2,7 @@ import AdminJS from 'adminjs'
 import { Database, Resource } from '@adminjs/prisma' // or any other adapter
 import Login from "../components/login";
 import { getAdminResources } from "./resources";
-import { componentLoader, Components } from './componentLoader'
+import componentLoader, {  Components } from './componentLoader'
 import { dashboardHandler } from './dashboard/handle';
 
 const getAdminJs = () => {

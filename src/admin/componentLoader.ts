@@ -7,4 +7,4 @@ const Components = {
   CreateImages: componentLoader.add('CreateImages', '../components/pages/createImg')
 }
 
-export { componentLoader, Components }
+export { componentLoader as default, Components }
