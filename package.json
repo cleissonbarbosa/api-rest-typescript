@@ -8,7 +8,7 @@
 		"docker:run": "docker-compose up -d",
 		"migration:dev": "prisma migrate dev",
 		"migration:deploy": "prisma migrate deploy",
-		"build": "rm -rf ./dist && tsc && ts-node ./src/admin/bundler.ts && ls -la && ls -la .adminjs",
+		"build": "rm -rf ./dist && tsc && ts-node ./src/admin/bundler.ts && mv .adminjs/app.bundle.js mv .adminjs/bundle.js && ls -la .adminjs",
 		"start": "node ./dist/index.js"
 	},
 	"devDependencies": {
