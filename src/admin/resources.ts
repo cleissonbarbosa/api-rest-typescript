@@ -35,7 +35,7 @@ export function getAdminResources() : Array<any> {
             options: {
                 navigation: {
                     name: 'E-learning',
-                    icon: 'Books'
+                    icon: 'Education'
                 },
             },
         },
@@ -44,7 +44,7 @@ export function getAdminResources() : Array<any> {
             options: {
                 navigation: {
                     name: 'E-learning',
-                    icon: 'Books'
+                    icon: 'Education'
                 },
             },
             features: [
@@ -56,7 +56,7 @@ export function getAdminResources() : Array<any> {
             options: {
                 navigation: {
                     name: 'E-learning',
-                    icon: 'Books'
+                    icon: 'Education'
                 },
             },
         },

@@ -15,9 +15,13 @@ const getAdminJs = () => {
             handler: dashboardHandler
         },
         pages: {
-            "create Images": {
-                icon: "Users",
+            "Create Images": {
+                icon: "Image",
                 component: Components.CreateImages,
+            },
+            Settings: {
+                icon: "Settings",
+                component: Components.Settings
             }
         },
         branding: {
