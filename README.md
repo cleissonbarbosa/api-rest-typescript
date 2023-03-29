@@ -9,10 +9,10 @@
 [🌐 View Demo](https://api-rest-node-tys2.onrender.com/)
 
 <div align="center">
-  <img width="400" src="public/images/logo.png" alt="logo">
+  <img width="400" src="public/images/logo-git.png" alt="logo">
 </div>
 
-> This is an example project, it can be used as a boilerplate to create a rest api with best practices and some functionality ready
+> This is an example project, it can be used as a boilerplate to create a rest api with best practices and some ready-made features such as: WebToken Authentication (JWT), OpenAi API Integration, Redis cache, Admin CRUD with AdminJS etc.
 
 ### 🚀 Tweaks and improvements
 
@@ -21,7 +21,7 @@ The project is still under development and the next updates will focus on the fo
 - [x] Improvement OpenAi integration
 - [ ] Run project with docker
 - [x] Error middleware
-- [ ] JWT token auth
+- [x] JWT token auth
 - [ ] DDD
 - [ ] Tests
 
