@@ -1,4 +1,5 @@
 import { bundle } from "@adminjs/bundler";
+import getAdminJs from "./adminJs";
 
 /**
  * yarn admin:bundle invokes this script.
@@ -7,7 +8,8 @@ import { bundle } from "@adminjs/bundler";
  */
 void (async () => {
   await bundle({
-    customComponentsInitializationFilePath: "./src/admin/components.ts",
+    customComponentsInitializationFilePath: "./src/admin/componentLoader.ts",
     destinationDir: "./.adminjs",
+    adminJsOptions: getAdminJs()
   });
 })();
