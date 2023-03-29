@@ -7,7 +7,7 @@ import { bundle } from "@adminjs/bundler";
  */
 void (async () => {
   await bundle({
-    customComponentsInitializationFilePath: "./src/admin/componentLoader.ts",
+    customComponentsInitializationFilePath: "./src/admin/components.ts",
     destinationDir: "./.adminjs",
   });
 })();
