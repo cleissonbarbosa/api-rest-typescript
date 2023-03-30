@@ -9,10 +9,11 @@
 		"migration:dev": "prisma migrate dev",
 		"migration:deploy": "prisma migrate deploy",
 		"build": "rm -rf ./dist && tsc && bundle:adminjs",
-		"bundle:adminjs": "yarn add ts-node @tiptap/pm --dev && ts-node./src/admin/bundler.ts && mv .adminjs/components.bundle.js .adminjs/bundle.js && yarn remove ts-node",
+		"bundle:adminjs": "yarn add ts-node @tiptap/pm --dev && ts-node ./src/admin/bundler.ts && mv .adminjs/components.bundle.js .adminjs/bundle.js && yarn remove ts-node @tiptap/pm",
 		"start": "node ./dist/index.js"
 	},
 	"devDependencies": {
+		"@tiptap/pm": "^2.0.0",
 		"@types/express": "^4.17.13",
 		"@types/express-jwt": "^7.4.2",
 		"@types/jsonwebtoken": "^9.0.1",
@@ -20,7 +21,7 @@
 		"@types/node": "^18.0.1",
 		"nodemon": "^2.0.19",
 		"prisma": "^4.11.0",
-		"ts-node": "^10.8.2",
+		"ts-node": "^10.9.1",
 		"typescript": "^4.7.4"
 	},
 	"dependencies": {
