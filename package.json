@@ -8,7 +8,7 @@
 		"docker:run": "docker-compose up -d",
 		"migration:dev": "prisma migrate dev",
 		"migration:deploy": "prisma migrate deploy",
-		"build": "yarn add typescript --dev && rm -rf ./dist && tsc && bundle:adminjs && yarn remove typescript",
+		"build": "rm -rf ./dist && tsc",
 		"bundle:adminjs": "yarn add ts-node @tiptap/pm --dev && ts-node ./src/admin/bundler.ts && mv .adminjs/components.bundle.js .adminjs/bundle.js && yarn remove ts-node @tiptap/pm",
 		"start": "node ./dist/index.js"
 	},
